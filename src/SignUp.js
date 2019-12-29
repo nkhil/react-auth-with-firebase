@@ -2,15 +2,16 @@ import React, { useState } from 'react';
 import { Redirect, withRouter } from 'react-router';
 import firebase from './lib/firebase';
 
-function Login({ history, isLoggedIn }) {
+function SignUp({ isLoggedIn, history }) {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const loginUser = async (e) => {
-    e.preventDefault();
+  const signUpUser = async (e) => {
     try {
-      await firebase.auth().signInWithEmailAndPassword(email, password);
+      e.preventDefault();
+      const response = await firebase.auth().createUserWithEmailAndPassword(email, password);
+      console.log("TCL: signUpUser -> response", response)
       history.push('/');
     } catch (error) {
       alert(error);
@@ -23,8 +24,8 @@ function Login({ history, isLoggedIn }) {
 
   return (
     <>
-      <h1>Login</h1>
-      <form onSubmit={loginUser}>
+      <h1>Sign up</h1>
+      <form onSubmit={signUpUser}>
         <input 
           name='email'
           placeholder='email'
@@ -39,10 +40,10 @@ function Login({ history, isLoggedIn }) {
           value={password}
           onChange={e => setPassword(e.target.value)}
         />
-        <button>Sign in</button>
+        <button>Sign up</button>
       </form>
     </>
   )
 }
 
-export default withRouter(Login);
+export default withRouter(SignUp);

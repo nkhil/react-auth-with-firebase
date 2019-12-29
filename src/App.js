@@ -9,14 +9,17 @@ import {
   useLocation
 } from "react-router-dom";
 import firebase from './lib/firebase';
+
+// import components
 import Login from './Login';
 import PrivateRoute from './PrivateRoute';
 import Home from './Home';
+import SignUp from './SignUp';
 
 function App() {
 
   const [currentUser, setCurrentUser] = useState(null);
-  console.log("TCL: App -> currentUser", currentUser)
+  console.log("TCL: App -> currentUser", currentUser);
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(setCurrentUser);
@@ -26,6 +29,7 @@ function App() {
     <Router>
       <Switch>
         <Route exact path='/login' render={props => <Login {...props} isLoggedIn={currentUser} />} />
+        <Route exact path='/signup' render={props => <SignUp {...props} isLoggedIn={currentUser} />} />
         <PrivateRoute isLoggedIn={currentUser} path="/" component={Home} />
       </Switch>
     </Router>

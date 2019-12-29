@@ -4,13 +4,13 @@ import 'firebase/auth';
 import 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCpR-bNTn4OFkmiah8xC59dgCu0xrR46l0",
-  authDomain: "pineapple-5242b.firebaseapp.com",
-  databaseURL: "https://pineapple-5242b.firebaseio.com",
-  projectId: "pineapple-5242b",
-  storageBucket: "pineapple-5242b.appspot.com",
-  messagingSenderId: "483372132321",
-  appId: "1:483372132321:web:db3511afed0bb85c5114a0"
+  apiKey: process.env.REACT_APP_FIREBASE_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_DATABASE_URL,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER,
+  appId: process.env.REACT_APP_APP_ID
 };
 
 firebase.initializeApp(firebaseConfig);
